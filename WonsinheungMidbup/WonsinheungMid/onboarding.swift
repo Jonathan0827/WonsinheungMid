@@ -224,182 +224,183 @@ struct LocationPermissionReqView: View {
 		GeometryReader { geo in
 			let w = geo.size.width
 			let h = geo.size.height
-			VStack(alignment: .center) {
-				Spacer()
-				if viewLoaded{
-					Text("👋🏻 안녕하세요, \(userName)님!")
-						.font(.title)
-						.fontWeight(.bold)
-						.transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1)))
-				}
-			if locationUndet {
-				
-					
-				//				if locationUndet{
-				Text("GPS 사용을 허용해주세요.")
-					.font(.title2)
-					.fontWeight(.bold)
-					.transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.3)))
-				LottieView(filename: "locationUndet", loopMod: .autoReverse)
-					.frame(height: h/8)
-					.transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.5)))
-				
-				Button(action: {
-					locationViewModel.requestPermission()
-				}, label: {
-					ZStack{
-						Capsule()
-							.fill(Color("blackwhite"))
-							.frame(width: 120, height: 40)
-						HStack{
-							Image(systemName: "location.circle.fill")
-							Text("허용하기")
-							
-						}.foregroundColor(Color("scheme"))
-						
-					}
-				})
-				.transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.7)))
-				Spacer()
-				
-				} else if locationAuth {
-					
-//						Image(systemName: "checkmark.circle.fill")
-//							.resizable()
-//							.frame(width: 20, height: 20)
-//							.foregroundColor(.green)
-						LottieView(filename: "success", loopMod: .playOnce)
-							.frame(height: h/8)
-							.transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.5)))
-						Text("이제 GPS를 사용할 수 있습니다.")
-							.fontWeight(.bold)
-							.transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.8)))
-
-					
-					Spacer()
-					Button(action: {
-						isFirstLaunching = false
-						goNext = false
-					}, label: {
-						ZStack{
-							RoundedRectangle(cornerRadius: 20)
-								.fill(.blue)
-								.frame(width: 300, height: 70)
-							HStack{
-								Text("완료")
-									.font(.title3)
-									.fontWeight(.semibold)
-							}.foregroundColor(Color("scheme"))
-
-						}
-					})
-					.transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(2)))
-
-
-				} else if locationDenied {
-					
-						LottieView(filename: "fail", loopMod: .autoReverse)
-							.frame(height: h/8)
-							.transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.5)))
-						Text("GPS 사용이 거부되었습니다.")
-							.fontWeight(.bold)
-							.transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.8)))
-
-					
-					Text("설정을 완료할 수 있지만 길찾기를 사용할 수 없습니다.")
-						.font(.caption2)
-						.transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.8)))
-					Spacer()
-					Button(action: {
-						isFirstLaunching = false
-						goNext = false
-					}, label: {
-						ZStack{
-							RoundedRectangle(cornerRadius: 20)
-								.fill(.blue)
-								.frame(width: 300, height: 70)
-							HStack{
-								Text("완료")
-									.font(.title3)
-									.fontWeight(.semibold)
-							}.foregroundColor(Color("scheme"))
-
-						}
-					})
-					.transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(2)))
-
-				} else if locationRest {
-					
-						LottieView(filename: "fail", loopMod: .autoReverse)
-							.frame(height: h/8)
-							.transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.5)))
-						Text("이 기기에서는 GPS를 사용할 수 없습니다.")
-							.fontWeight(.bold)
-							.transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.8)))
-					
-					
-					Text("설정을 완료할 수 있지만 길찾기를 사용할 수 없습니다.")
-						.font(.caption2)
-						.transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.8)))
-					Spacer()
-					Button(action: {
-						isFirstLaunching = false
-						goNext = false
-					}, label: {
-						ZStack{
-							RoundedRectangle(cornerRadius: 20)
-								.fill(.blue)
-								.frame(width: 300, height: 70)
-							HStack{
-								Text("완료")
-									.font(.title3)
-									.fontWeight(.semibold)
-							}.foregroundColor(Color("scheme"))
-
-						}
-					})
-					.transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(2)))
-
-				}
-				switch locationViewModel.authorizationStatus {
-				case .notDetermined:
-					Text("")
-						.onAppear{
-							print("undet")
-							locationUndet = true
-						}
-					
-				case .restricted:
-					Text("")
-						.onAppear{
-							print("rest")
-							locationUndet = false
-							locationRest = true
-							locationAuth = false
-						}
-				case .denied:
-					Text("")
-						.onAppear{
-							print("deny")
-							locationUndet = false
-							locationAuth = false
-							locationDenied = true
-						}
-				case .authorizedAlways, .authorizedWhenInUse:
-					Text("")
-						.onAppear{
-							print("auth")
-							locationUndet = false
-							
-							locationAuth = true
-							
-						}
-					
-				default:
-					ProgressView()
-				}
-			
-			}
+            VStack(alignment: .center) {
+                Spacer()
+                if viewLoaded{
+                    Text("👋🏻 안녕하세요, \(userName)님!")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1)))
+                    
+                    if locationUndet {
+                        
+                        
+                        //				if locationUndet{
+                        Text("GPS 사용을 허용해주세요.")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.3)))
+                        LottieView(filename: "locationUndet", loopMod: .autoReverse)
+                            .frame(height: h/8)
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.5)))
+                        
+                        Button(action: {
+                            locationViewModel.requestPermission()
+                        }, label: {
+                            ZStack{
+                                Capsule()
+                                    .fill(Color("blackwhite"))
+                                    .frame(width: 120, height: 40)
+                                HStack{
+                                    Image(systemName: "location.circle.fill")
+                                    Text("허용하기")
+                                    
+                                }.foregroundColor(Color("scheme"))
+                                
+                            }
+                        })
+                        .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.7)))
+                        Spacer()
+                        
+                    } else if locationAuth {
+                        
+                        //						Image(systemName: "checkmark.circle.fill")
+                        //							.resizable()
+                        //							.frame(width: 20, height: 20)
+                        //							.foregroundColor(.green)
+                        LottieView(filename: "success", loopMod: .playOnce)
+                            .frame(height: h/8)
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.5)))
+                        Text("이제 GPS를 사용할 수 있습니다.")
+                            .fontWeight(.bold)
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.8)))
+                        
+                        
+                        Spacer()
+                        Button(action: {
+                            isFirstLaunching = false
+                            goNext = false
+                        }, label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(.blue)
+                                    .frame(width: 300, height: 70)
+                                HStack{
+                                    Text("완료")
+                                        .font(.title3)
+                                        .fontWeight(.semibold)
+                                }.foregroundColor(Color("scheme"))
+                                
+                            }
+                        })
+                        .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(2)))
+                        
+                        
+                    } else if locationDenied {
+                        
+                        LottieView(filename: "fail", loopMod: .autoReverse)
+                            .frame(height: h/8)
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.5)))
+                        Text("GPS 사용이 거부되었습니다.")
+                            .fontWeight(.bold)
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.8)))
+                        
+                        
+                        Text("설정을 완료할 수 있지만 길찾기를 사용할 수 없습니다.")
+                            .font(.caption2)
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.8)))
+                        Spacer()
+                        Button(action: {
+                            isFirstLaunching = false
+                            goNext = false
+                        }, label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(.blue)
+                                    .frame(width: 300, height: 70)
+                                HStack{
+                                    Text("완료")
+                                        .font(.title3)
+                                        .fontWeight(.semibold)
+                                }.foregroundColor(Color("scheme"))
+                                
+                            }
+                        })
+                        .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(2)))
+                        
+                    } else if locationRest {
+                        
+                        LottieView(filename: "fail", loopMod: .autoReverse)
+                            .frame(height: h/8)
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.5)))
+                        Text("이 기기에서는 GPS를 사용할 수 없습니다.")
+                            .fontWeight(.bold)
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.8)))
+                        
+                        
+                        Text("설정을 완료할 수 있지만 길찾기를 사용할 수 없습니다.")
+                            .font(.caption2)
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.8)))
+                        Spacer()
+                        Button(action: {
+                            isFirstLaunching = false
+                            goNext = false
+                        }, label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(.blue)
+                                    .frame(width: 300, height: 70)
+                                HStack{
+                                    Text("완료")
+                                        .font(.title3)
+                                        .fontWeight(.semibold)
+                                }.foregroundColor(Color("scheme"))
+                                
+                            }
+                        })
+                        .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(2)))
+                        
+                    }
+                    switch locationViewModel.authorizationStatus {
+                    case .notDetermined:
+                        Text("")
+                            .onAppear{
+                                print("undet")
+                                locationUndet = true
+                            }
+                        
+                    case .restricted:
+                        Text("")
+                            .onAppear{
+                                print("rest")
+                                locationUndet = false
+                                locationRest = true
+                                locationAuth = false
+                            }
+                    case .denied:
+                        Text("")
+                            .onAppear{
+                                print("deny")
+                                locationUndet = false
+                                locationAuth = false
+                                locationDenied = true
+                            }
+                    case .authorizedAlways, .authorizedWhenInUse:
+                        Text("")
+                            .onAppear{
+                                print("auth")
+                                locationUndet = false
+                                
+                                locationAuth = true
+                                
+                            }
+                        
+                    default:
+                        ProgressView()
+                    }
+                    
+                }
+            }
 		}.onAppear {
 			locationAuth = false
 			locationDenied = false

@@ -219,13 +219,15 @@ struct LocationPermissionReqView: View {
 	@State var viewLoaded = false
 	@AppStorage("userName") var userName: String = ""
 	@State var viewFeatures = false
+    let h = UIScreen.main.bounds.height
+
 	@Binding var goNext: Bool
 	var body: some View{
-		GeometryReader { geo in
-			let w = geo.size.width
-			let h = geo.size.height
-			VStack(alignment: .center) {
-				Spacer()
+//		GeometryReader { geo in
+//			let w = geo.size.width
+//			let h = geo.size.height
+            VStack(alignment: .center) {
+                Spacer()
                 if viewLoaded{
                     
                     
@@ -235,7 +237,7 @@ struct LocationPermissionReqView: View {
                             .fontWeight(.bold)
                             .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1)))
                         
-                        //				if locationUndet{
+                        //                if locationUndet{
                         Text("GPS 사용을 허용해주세요.")
                             .font(.title2)
                             .fontWeight(.bold)
@@ -267,10 +269,10 @@ struct LocationPermissionReqView: View {
                             .font(.title)
                             .fontWeight(.bold)
                             .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1)))
-                        //						Image(systemName: "checkmark.circle.fill")
-                        //							.resizable()
-                        //							.frame(width: 20, height: 20)
-                        //							.foregroundColor(.green)
+                        //                        Image(systemName: "checkmark.circle.fill")
+                        //                            .resizable()
+                        //                            .frame(width: 20, height: 20)
+                        //                            .foregroundColor(.green)
                         LottieView(filename: "success", loopMod: .playOnce)
                             .frame(height: h/8)
                             .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5).delay(1.5)))
@@ -420,8 +422,8 @@ struct LocationPermissionReqView: View {
                         ProgressView()
                     }
                 }
-			}
-		}.onAppear {
+//            }
+        }.onAppear {
             withAnimation{
                 
                 locationAuth = false
@@ -431,9 +433,9 @@ struct LocationPermissionReqView: View {
                 locationRest = false
             }
 //
-//			isFirstLaunching = false
-//			goNext = false
-		}
+//            isFirstLaunching = false
+//            goNext = false
+        }
 	}
 }
 struct FeaturesView: View{
