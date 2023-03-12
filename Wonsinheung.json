@@ -1,20 +1,17 @@
-import sys
-f = open('WonsinheungMid.json', 'w')
-f.write('''
+
 {
     "META": {
-        "repoName": "원신흥중학교",
+        "repoName": "Wonsinheung Mid",
         "repoIcon": "https://jonathan.kro.kr/WonsinheungMid/icon.png"
     },
     "App": [{
-        "name": "WonsinheungMid",
-        "version": "'''+sys.argv[1]+'''",
+        "name": "원신흥중학교",
+        "version": "1.0",
         "icon": "https://jonathan.kro.kr/WonsinheungMid/icon.png",
-        "down": "https://jonathan.kro.kr/WonsinheungMid/build/WonsinheungMid.ipa",
+        "down": "https://jonathan.kro.kr/WonsinheungMid/build/YourSchool.ipa",
         "description": "Unofficial app for Wonsinheung Middle School.",
         "bundleID": "com.jonathan.WonsinheungMid",
         "category": "Education",
-        "changelog": "'''+"- "+sys.argv[2]+'''"
+        "changelog": ""
     }]
 }
-''')
