@@ -1,0 +1,17 @@
+
+{
+    "META": {
+        "repoName": "YourSchool Repo",
+        "repoIcon": "https://jonathan.kro.kr/YourSchool/icon.png"
+    },
+    "App": [{
+        "name": "YourSchool",
+        "version": "2.8",
+        "icon": "https://jonathan.kro.kr/YourSchool/icon.png",
+        "down": "https://jonathan.kro.kr/YourSchool/build/YourSchool.ipa",
+        "description": "Unofficial app for Wonsinheung Middle School.",
+        "bundleID": "com.junehyeop.YourSchool",
+        "category": "App",
+        "changelog": "- Add Color Bar option to settings"
+    }]
+}
