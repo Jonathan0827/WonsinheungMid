@@ -1,5 +1,5 @@
 import sys
-f = open('WonsinheungMid.json', 'w')
+f = open('Wonsinheung.json', 'w')
 f.write('''
 {
     "META": {
