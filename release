@@ -5,10 +5,10 @@ git add ./build/WonsinheungMid.ipa
 git commit -m "rebuild"
 git push
 gh release create v"$1" "./build/WonsinheungMid.ipa#" -t "$2" -n "$3" --latest
-rm WonsinheungMid.json
-touch WonsinheungMid.json
+rm Wonsinheung.json
+touch Wonsinheung.json
 python3 release.py "$1" "$3"
-git add WonsinheungMid.json
+git add Wonsinheung.json
 git commit -m "Repo Update"
 git push
 git add .
