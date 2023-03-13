@@ -62,6 +62,8 @@ struct infoView: View {
     }
 }
 struct SettingsView: View {
+    @AppStorage("alwaysLight") var alwaysLight = false
+
     @Binding var isFirstLaunching: Bool
     @Binding var userName: String
     @Binding var goReset: Bool
@@ -77,19 +79,26 @@ struct SettingsView: View {
                     
 //                }
                 Section{
-                    Button(action: {showInfo = true}, label: {
+                    Button(action: {LightMode()}, label: {
                         HStack{
-                            Image(systemName: "info")
-                            Text("  이 앱에 대하여")
+                            Image(systemName: "lightbulb")
+                            Text("Always Light Mode \(LightModeStat())")
                         }
                     })
+                    
                     Button(action: {cBar()}, label: {
                         HStack{
                             Image(systemName: "\(cBarStat()[0])")
                             Text("RainBar \(cBarStat()[1])")
                         }
                     })
-
+                    
+                    Button(action: {showInfo = true}, label: {
+                        HStack{
+                            Image(systemName: "info")
+                            Text("  이 앱에 대하여")
+                        }
+                    })
                 }
                 Section{
                     Button(action: {isFirstLaunching = true;userName = "";goReset = false}, label: {
@@ -127,5 +136,20 @@ struct SettingsView: View {
             cStat.append("활성화")
         }
         return cStat
+    }
+    func LightMode() {
+        withAnimation{
+            alwaysLight.toggle()
+        }
+        print(alwaysLight)
+    }
+    func LightModeStat() -> String {
+        var lStat: String = ""
+        if alwaysLight {
+            lStat = ("비활성화")
+        } else {
+            lStat = ("활성화")
+        }
+        return lStat
     }
 }

@@ -93,7 +93,7 @@ struct OnboardingView: View {
 						.padding(20)
 						.background(Color("scheme"))
 						.cornerRadius(30)
-						.shadow(color: .primary, radius: 20)
+						.shadow(color: .black, radius: 20)
 						.zIndex(10)
 						.transition(.move(edge: .bottom))
 					}

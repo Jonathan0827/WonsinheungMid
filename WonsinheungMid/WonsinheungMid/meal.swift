@@ -67,7 +67,7 @@ struct mealView: View {
 //            }
     }
     func returnMealData() {
-        mealInfo = "fetching"
+        mealInfo = ""
         df.locale = Locale(identifier: "ko_kr")
         df.timeZone = TimeZone(abbreviation: "KST")
         df.dateFormat = "yyyyMMdd"

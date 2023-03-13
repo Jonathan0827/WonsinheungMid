@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct WonsinheungMidApp: App {
+    @AppStorage("alwaysLight") var alwaysLight = false
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(alwaysLight ? .light : .none)
         }
     }
 }
