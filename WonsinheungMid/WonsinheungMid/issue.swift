@@ -7,6 +7,6 @@
 
 import Foundation
 
-func generateIssue() {
-//    issue
+func generateIssue(title: String, description: String) {
+
 }
