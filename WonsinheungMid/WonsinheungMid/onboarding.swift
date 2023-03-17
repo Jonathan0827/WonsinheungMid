@@ -458,12 +458,15 @@ struct nonWonsinheungView: View{
                     .font(.title)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
-					.onAppear{
-						sleep(5)
-						print("exit")
-					}
+                Text("잠시 후 앱이 자동으로 종료됩니다.")
+                    .font(.title3)
 
             }
+        }
+        .onAppear{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                    exit(1)
+            })
         }
         .navigationBarBackButtonHidden(true)
     }
