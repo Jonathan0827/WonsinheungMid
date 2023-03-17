@@ -8,5 +8,5 @@
 import Foundation
 
 func generateIssue(title: String, description: String) {
-
+    let issue = [title, description]
 }
