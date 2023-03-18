@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Alamofire
+import OctoKit
 struct SettingsView: View {
     
     @AppStorage("alwaysLight") var alwaysLight = false
@@ -74,7 +75,7 @@ struct SettingsView: View {
             infoView()
         }
         .sheet(isPresented: $showBugRep) {
-            bugReportView()
+            bugReportView(showBugRep: $showBugRep)
         }
     }
     func cBar() {
@@ -170,6 +171,7 @@ struct infoView: View {
     }
 }
 struct bugReportView: View {
+    @Binding var showBugRep: Bool
     @State var viewLoaded = false
     @State var secondViewLoaded = false
     @State var bugTitle: String = ""
@@ -177,6 +179,9 @@ struct bugReportView: View {
     @State var mailAddress: String = ""
     @State var fillFormWarning = false
     @State var bugReportInfo = []
+    @State var issueNotSub: Bool = true
+    @State var issueLoading: Bool = false
+    @State var issueSub: Bool = false
     let placeholder = "Placeholder"
 
     let height = UIScreen.main.bounds.height
@@ -206,16 +211,16 @@ struct bugReportView: View {
             if secondViewLoaded {
 //                ProgressView()
 //                    .tint(.primary)
-                    Form {
-                        Section() {
-                            TextField("제목", text: $bugTitle)
-
-                        }
-                        Section() {
-                            TextField("버그를 설명해주세요", text: $bugDescription)
-
-                        }
+                Form {
+                    Section() {
+                        TextField("제목", text: $bugTitle)
+                        
                     }
+                    Section("버그를 설명해주세요.") {
+                        TextEditor(text: $bugDescription)
+                            .frame(height: height/5)
+                    }
+                }
                     
                     
                     //                    if bugWay.isEmpty {
@@ -227,31 +232,80 @@ struct bugReportView: View {
                     //                                .padding(.all)
                     //                    }
                     Spacer()
-                    Button(action: {
-                        if bugTitle.isEmpty{
-                            fillFormWarning = true
-                        } else if bugDescription.isEmpty {
-                            fillFormWarning = true
-                        } else {
-                            let bugTitleBlankToNbsp = bugTitle.replacingOccurrences(of: " ", with: "&nbsp;")
-                            let bugDescriptionBlankToNbsp = bugDescription.replacingOccurrences(of: " ", with: "&nbsp;")
-                            generateIssue(title: bugTitleBlankToNbsp, description: bugDescriptionBlankToNbsp)
-                        }
-                    }, label: {
+                    if issueNotSub {
+                        Button(action: {
+                            if bugTitle.isEmpty{
+                                fillFormWarning = true
+                            } else if bugDescription.isEmpty {
+                                fillFormWarning = true
+                            } else {
+                                issueNotSub = false
+                                issueLoading = true
+                                let bugTitleBlankToNbsp = bugTitle.replacingOccurrences(of: " ", with: "&nbsp;")
+                                let bugDescriptionBlankToNbsp = bugDescription.replacingOccurrences(of: " ", with: "&nbsp;")
+                                //                            generateIssue(title: bugTitleBlankToNbsp, description: bugDescriptionBlankToNbsp)
+                                let config = TokenConfiguration(Bundle.main.object(forInfoDictionaryKey: "GITHUB_ACCESS_TOKEN") as? String)
+                                Octokit(config).postIssue(owner: "Jonathan0827", repository: "WonsinheungMid", title: bugTitle, body: bugDescription, labels: ["bug"]) { response in
+                                    switch response {
+                                    case .success(let issue):
+                                        issueLoading = false
+                                        // do something with the issue
+                                        print("success")
+                                        issueSub = true
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                                            withAnimation { showBugRep.toggle() }
+                                        })
+                                    case .failure:
+                                        issueLoading = false
+                                        print(Error.self)
+                                        // handle any errors
+                                    }
+                                }
+                            }
+                        }, label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(.blue)
+                                
+                                    .frame(width: 300, height: 70)
+                                HStack{
+                                    Text("제출")
+                                        .font(.title3)
+                                        .fontWeight(.semibold)
+                                }.foregroundColor(Color("scheme"))
+                                
+                            }
+                        })
+                    } else if issueLoading {
+                        ProgressView()
+                    } else if issueSub {
                         ZStack{
                             RoundedRectangle(cornerRadius: 20)
-                                .fill(.blue)
+                                .fill(Color("scheme"))
                             
                                 .frame(width: 300, height: 70)
                             HStack{
-                                Text("제출")
+                                Text("감사합니다!")
                                     .font(.title3)
                                     .fontWeight(.semibold)
-                            }.foregroundColor(Color("scheme"))
+                            }.foregroundColor(.blue)
                             
                         }
-                    })
-                    
+                    } else {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color("scheme"))
+                            
+                                .frame(width: 300, height: 70)
+                            HStack{
+                                Text("요류가 발생하였습니다")
+                                    .font(.title3)
+                                    .fontWeight(.semibold)
+                            }.foregroundColor(.red)
+                            
+                        }
+                    }
+                
                     //                    .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.5)))
                 }
             

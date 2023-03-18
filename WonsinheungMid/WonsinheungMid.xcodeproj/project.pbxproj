@@ -32,6 +32,7 @@
 		918881F029BC5AE8004A3C7B /* meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918881EF29BC5AE8004A3C7B /* meal.swift */; };
 		9196FE2C29C0A8E900A9FCBC /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9196FE2B29C0A8E800A9FCBC /* Version.swift */; };
 		91C1FE2129C4A4FE009A17DB /* issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C1FE2029C4A4FE009A17DB /* issue.swift */; };
+		91C1FE2629C58340009A17DB /* OctoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 91C1FE2529C58340009A17DB /* OctoKit */; };
 		91DD347F29BDA6BC0041FC6A /* schoolData.json in Resources */ = {isa = PBXBuildFile; fileRef = 91DD347E29BDA6BC0041FC6A /* schoolData.json */; };
 		91DD348229BDA90C0041FC6A /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91DD348129BDA90C0041FC6A /* Launch.storyboard */; };
 		F69471A4AFE68B2B25AD1CE1 /* Pods_WonsinheungMid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6EDB99D5EFBDBF8EB6835D4 /* Pods_WonsinheungMid.framework */; };
@@ -86,6 +87,7 @@
 		9196FE2B29C0A8E800A9FCBC /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		91C1FE2029C4A4FE009A17DB /* issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = issue.swift; sourceTree = "<group>"; };
 		91C1FE2229C5800F009A17DB /* api.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = api.xcconfig; path = ../../api.xcconfig; sourceTree = "<group>"; };
+		91C1FE2329C5823F009A17DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		91DD347E29BDA6BC0041FC6A /* schoolData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schoolData.json; sourceTree = "<group>"; };
 		91DD348129BDA90C0041FC6A /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		AC55DA0A0B9C2ED6CD5AE389 /* Pods-WonsinheungMidTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WonsinheungMidTests.debug.xcconfig"; path = "Target Support Files/Pods-WonsinheungMidTests/Pods-WonsinheungMidTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91C1FE2629C58340009A17DB /* OctoKit in Frameworks */,
 				F69471A4AFE68B2B25AD1CE1 /* Pods_WonsinheungMid.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,6 +151,7 @@
 		91541DD529BC56CD006EBDA5 /* WonsinheungMid */ = {
 			isa = PBXGroup;
 			children = (
+				91C1FE2329C5823F009A17DB /* Info.plist */,
 				91541DD629BC56CD006EBDA5 /* WonsinheungMidApp.swift */,
 				918881D829BC5978004A3C7B /* CLLocationSimLoc.gpx */,
 				918881ED29BC5AD3004A3C7B /* mealJson.swift */,
@@ -249,6 +253,9 @@
 			dependencies = (
 			);
 			name = WonsinheungMid;
+			packageProductDependencies = (
+				91C1FE2529C58340009A17DB /* OctoKit */,
+			);
 			productName = WonsinheungMid;
 			productReference = 91541DD329BC56CD006EBDA5 /* WonsinheungMid.app */;
 			productType = "com.apple.product-type.application";
@@ -324,6 +331,9 @@
 				Base,
 			);
 			mainGroup = 91541DCA29BC56CD006EBDA5;
+			packageReferences = (
+				91C1FE2429C58340009A17DB /* XCRemoteSwiftPackageReference "octokit" */,
+			);
 			productRefGroup = 91541DD429BC56CD006EBDA5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -653,6 +663,7 @@
 				DEVELOPMENT_TEAM = WF4J3YQN3K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WonsinheungMid/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "원신흥중학교";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "GPS 사용을 허용해주세요";
@@ -691,6 +702,7 @@
 				DEVELOPMENT_TEAM = WF4J3YQN3K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WonsinheungMid/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "원신흥중학교";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "GPS 사용을 허용해주세요";
@@ -837,6 +849,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		91C1FE2429C58340009A17DB /* XCRemoteSwiftPackageReference "octokit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nerdishbynature/octokit.swift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		91C1FE2529C58340009A17DB /* OctoKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91C1FE2429C58340009A17DB /* XCRemoteSwiftPackageReference "octokit" */;
+			productName = OctoKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 91541DCB29BC56CD006EBDA5 /* Project object */;
 }

@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nerdishbynature/octokit.swift",
       "state" : {
-        "revision" : "f762f1566f7cd0e683b9329f169c28ab6ef993cc",
-        "version" : "0.12.0"
+        "branch" : "main",
+        "revision" : "3cd42d664b675dce9cf83818cc115ebfcdf6b6e6"
       }
     },
     {
