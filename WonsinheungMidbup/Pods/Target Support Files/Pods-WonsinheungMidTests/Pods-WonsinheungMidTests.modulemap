@@ -1,6 +1,0 @@
-framework module Pods_WonsinheungMidTests {
-  umbrella header "Pods-WonsinheungMidTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
