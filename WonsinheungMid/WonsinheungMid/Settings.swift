@@ -241,8 +241,6 @@ struct bugReportView: View {
                             } else {
                                 issueNotSub = false
                                 issueLoading = true
-                                let bugTitleBlankToNbsp = bugTitle.replacingOccurrences(of: " ", with: "&nbsp;")
-                                let bugDescriptionBlankToNbsp = bugDescription.replacingOccurrences(of: " ", with: "&nbsp;")
                                 //                            generateIssue(title: bugTitleBlankToNbsp, description: bugDescriptionBlankToNbsp)
                                 let config = TokenConfiguration(Bundle.main.object(forInfoDictionaryKey: "GITHUB_ACCESS_TOKEN") as? String)
                                 Octokit(config).postIssue(owner: "Jonathan0827", repository: "WonsinheungMid", title: bugTitle, body: bugDescription, labels: ["bug"]) { response in
@@ -257,6 +255,7 @@ struct bugReportView: View {
                                         })
                                     case .failure:
                                         issueLoading = false
+                                        print("unexpected error occured while reporting issue")
                                         print(Error.self)
                                         // handle any errors
                                     }
@@ -298,7 +297,7 @@ struct bugReportView: View {
                             
                                 .frame(width: 300, height: 70)
                             HStack{
-                                Text("요류가 발생하였습니다")
+                                Text("오류가 발생하였습니다")
                                     .font(.title3)
                                     .fontWeight(.semibold)
                             }.foregroundColor(.red)
