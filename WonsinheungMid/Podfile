@@ -11,7 +11,6 @@ target 'WonsinheungMid' do
   pod 'SwiftSoup'
   pod 'lottie-ios'
   pod "CenteredCollectionView"
-  
   target 'WonsinheungMidTests' do
     inherit! :search_paths
     # Pods for testing

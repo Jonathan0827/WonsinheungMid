@@ -215,10 +215,6 @@ struct bugReportView: View {
                             TextField("버그를 설명해주세요", text: $bugDescription)
 
                         }
-                        Section() {
-                            TextField("버그를 설명해주세요", text: $bugDescription)
-
-                        }
                     }
                     
                     
@@ -239,7 +235,7 @@ struct bugReportView: View {
                         } else {
                             let bugTitleBlankToNbsp = bugTitle.replacingOccurrences(of: " ", with: "&nbsp;")
                             let bugDescriptionBlankToNbsp = bugDescription.replacingOccurrences(of: " ", with: "&nbsp;")
-                            
+                            generateIssue(title: bugTitleBlankToNbsp, description: bugDescriptionBlankToNbsp)
                         }
                     }, label: {
                         ZStack{

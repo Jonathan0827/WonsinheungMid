@@ -85,6 +85,7 @@
 		918881EF29BC5AE8004A3C7B /* meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = meal.swift; sourceTree = "<group>"; };
 		9196FE2B29C0A8E800A9FCBC /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		91C1FE2029C4A4FE009A17DB /* issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = issue.swift; sourceTree = "<group>"; };
+		91C1FE2229C5800F009A17DB /* api.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = api.xcconfig; path = ../../api.xcconfig; sourceTree = "<group>"; };
 		91DD347E29BDA6BC0041FC6A /* schoolData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schoolData.json; sourceTree = "<group>"; };
 		91DD348129BDA90C0041FC6A /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		AC55DA0A0B9C2ED6CD5AE389 /* Pods-WonsinheungMidTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WonsinheungMidTests.debug.xcconfig"; path = "Target Support Files/Pods-WonsinheungMidTests/Pods-WonsinheungMidTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +166,7 @@
 				918881D129BC5978004A3C7B /* MyMapView.swift */,
 				918881D329BC5978004A3C7B /* onboarding.swift */,
 				918881CD29BC5978004A3C7B /* Settings.swift */,
+				91C1FE2229C5800F009A17DB /* api.xcconfig */,
 				9196FE2B29C0A8E800A9FCBC /* Version.swift */,
 				918881D529BC5978004A3C7B /* success.json */,
 				91DD348029BDA6C60041FC6A /* resources */,
@@ -525,6 +527,7 @@
 /* Begin XCBuildConfiguration section */
 		91541DF529BC56CE006EBDA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91C1FE2229C5800F009A17DB /* api.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -585,6 +588,7 @@
 		};
 		91541DF629BC56CE006EBDA5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91C1FE2229C5800F009A17DB /* api.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -639,7 +643,7 @@
 		};
 		91541DF829BC56CE006EBDA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 50B2CA610B6E0A2DFB41940A /* Pods-WonsinheungMid.debug.xcconfig */;
+			baseConfigurationReference = D9CC73507A4E36D7FE04B2E3 /* Pods-WonsinheungMid-WonsinheungMidUITests.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -677,7 +681,7 @@
 		};
 		91541DF929BC56CE006EBDA5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE28453F822CC81AE7263A45 /* Pods-WonsinheungMid.release.xcconfig */;
+			baseConfigurationReference = 67F0A436ECC0F37AF4DA3455 /* Pods-WonsinheungMid-WonsinheungMidUITests.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
