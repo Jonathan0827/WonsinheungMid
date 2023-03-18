@@ -6,12 +6,12 @@
     },
     "App": [{
         "name": "WonsinheungMid",
-        "version": "1.2",
+        "version": "2.0",
         "icon": "https://jonathan.kro.kr/WonsinheungMid/icon.png",
         "down": "https://jonathan.kro.kr/WonsinheungMid/build/WonsinheungMid.ipa",
         "description": "Unofficial app for Wonsinheung Middle School.",
         "bundleID": "com.jonathan.WonsinheungMid",
         "category": "Education",
-        "changelog": "- Add Always Light Mode"
+        "changelog": "- Now, you can simply report issue in app"
     }]
 }
