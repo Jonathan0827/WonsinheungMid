@@ -26,13 +26,13 @@ DD_APP_PATH="$WORKING_LOCATION/build/DerivedDataApp/Build/Products/Release-iphon
 TARGET_APP="$WORKING_LOCATION/build/$APPLICATION_NAME.app"
 cp -r "$DD_APP_PATH" "$TARGET_APP"
 
-codesign --remove "$TARGET_APP"
-if [ -e "$TARGET_APP/_CodeSignature" ]; then
-    rm -rf "$TARGET_APP/_CodeSignature"
-fi
-if [ -e "$TARGET_APP/embedded.mobileprovision" ]; then
-    rm -rf "$TARGET_APP/embedded.mobileprovision"
-fi
+# codesign --remove "$TARGET_APP"
+#if [ -e "$TARGET_APP/_CodeSignature" ]; then
+ #   rm -rf "$TARGET_APP/_CodeSignature"
+#fi
+#if [ -e "$TARGET_APP/embedded.mobileprovision" ]; then
+#    rm -rf "$TARGET_APP/embedded.mobileprovision"
+#fi
 
 # Add entitlements
 #echo "Adding entitlements"

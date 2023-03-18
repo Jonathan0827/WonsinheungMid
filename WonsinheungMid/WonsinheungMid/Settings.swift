@@ -243,6 +243,7 @@ struct bugReportView: View {
                                 issueLoading = true
                                 //                            generateIssue(title: bugTitleBlankToNbsp, description: bugDescriptionBlankToNbsp)
                                 let config = TokenConfiguration(Bundle.main.object(forInfoDictionaryKey: "GITHUB_ACCESS_TOKEN") as? String)
+                                print(Bundle.main.object(forInfoDictionaryKey: "GITHUB_ACCESS_TOKEN"))
                                 Octokit(config).postIssue(owner: "Jonathan0827", repository: "WonsinheungMid", title: bugTitle, body: bugDescription, labels: ["bug"]) { response in
                                     switch response {
                                     case .success(let issue):
@@ -256,7 +257,7 @@ struct bugReportView: View {
                                     case .failure:
                                         issueLoading = false
                                         print("unexpected error occured while reporting issue")
-                                        print(Error.self)
+//                                        print()
                                         // handle any errors
                                     }
                                 }
