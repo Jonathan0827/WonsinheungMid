@@ -178,6 +178,8 @@ struct NavMapView: UIViewRepresentable {
     typealias UIViewType = MKMapView
     
     let locationManager = CLLocationManager()
+    private let mapView = MKMapView()
+
     @Binding var eta: Int
     @Binding var directions: [String]
     func makeCoordinator() -> MapViewCoordinator {
@@ -185,39 +187,72 @@ struct NavMapView: UIViewRepresentable {
     }
     func makeUIView(context: Context) -> MKMapView {
         
-        let mapView = MKMapView()
-        mapView.delegate = context.coordinator
+//        let mapView = MKMapView()
+//        mapView.delegate = context.coordinator
+//        let crntLocation = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: getUserLocaation()[0], longitude: getUserLocaation()[1]), span: MKCoordinateSpan())
+//        let crntLocationPM = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: getUserLocaation()[0], longitude: getUserLocaation()[1]))
+//        mapView.setRegion(crntLocation, animated: true)
+//        mapView.showsUserLocation = true
+////        school
+//        let schoolPM = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 36.333065000000005, longitude: 127.34531979051518))
+//        let request = MKDirections.Request()
+//        request.source = MKMapItem(placemark: crntLocationPM)
+//        request.destination = MKMapItem(placemark: schoolPM)
+//        request.transportType = .walking
+//
+//        let directions = MKDirections(request: request)
+//        directions.calculate { response, error in
+//          guard let route = response?.routes.first else { return }
+//            let schoolPin = MapPin(title: "School", locationName: "School Location", coordinate: CLLocationCoordinate2D(latitude: 36.333065000000005, longitude: 127.34531979051518))
+//            let crntPin = MapPin(title: "Start", locationName: "Start Location", coordinate: CLLocationCoordinate2D(latitude: getUserLocaation()[0], longitude: getUserLocaation()[1]))
+//
+//            mapView.addAnnotations([schoolPin, crntPin])
+//            mapView.addOverlay(route.polyline)
+//            mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: true)
+//            self.directions = route.steps.map { $0.instructions }.filter{ !$0.isEmpty }
+//            for route in response!.routes {
+//                eta = Int(route.expectedTravelTime)
+//                print("eta is")
+//                print("\(eta/60) min")
+//            }
+//        }
+//        return mapView
         let crntLocation = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: getUserLocaation()[0], longitude: getUserLocaation()[1]), span: MKCoordinateSpan())
-        let crntLocationPM = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: getUserLocaation()[0], longitude: getUserLocaation()[1]))
         mapView.setRegion(crntLocation, animated: true)
         mapView.showsUserLocation = true
-//        school
-        let schoolPM = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 36.333065000000005, longitude: 127.34531979051518))
-        let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: crntLocationPM)
-        request.destination = MKMapItem(placemark: schoolPM)
-        request.transportType = .walking
-        
-        let directions = MKDirections(request: request)
-        directions.calculate { response, error in
-          guard let route = response?.routes.first else { return }
-            let schoolPin = MapPin(title: "School", locationName: "School Location", coordinate: CLLocationCoordinate2D(latitude: 36.333065000000005, longitude: 127.34531979051518))
-            let crntPin = MapPin(title: "Start", locationName: "Start Location", coordinate: CLLocationCoordinate2D(latitude: getUserLocaation()[0], longitude: getUserLocaation()[1]))
-
-            mapView.addAnnotations([schoolPin, crntPin])
-            mapView.addOverlay(route.polyline)
-            mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: true)
-            self.directions = route.steps.map { $0.instructions }.filter{ !$0.isEmpty }
-            for route in response!.routes {
-                eta = Int(route.expectedTravelTime)
-                print("eta is")
-                print("\(eta/60) min")
-            }
-        }
+        mapView.delegate = context.coordinator // Set the coordinator as the delegate to receive updates
         return mapView
     }
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
+            let crntLocationPM = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: getUserLocaation()[0], longitude: getUserLocaation()[1]))
+            let annotation = MKPointAnnotation()
+        
+        //        school
+                let schoolPM = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 36.333065000000005, longitude: 127.34531979051518))
+//        annotation.coordinate = coordinate
+
+                let request = MKDirections.Request()
+                request.source = MKMapItem(placemark: crntLocationPM)
+                request.destination = MKMapItem(placemark: schoolPM)
+                request.transportType = .walking
+        
+                let directions = MKDirections(request: request)
+                directions.calculate { response, error in
+                  guard let route = response?.routes.first else { return }
+                    let schoolPin = MapPin(title: "School", locationName: "School Location", coordinate: CLLocationCoordinate2D(latitude: 36.333065000000005, longitude: 127.34531979051518))
+                    let crntPin = MapPin(title: "Start", locationName: "Start Location", coordinate: CLLocationCoordinate2D(latitude: getUserLocaation()[0], longitude: getUserLocaation()[1]))
+        
+                    mapView.addAnnotations([schoolPin, crntPin])
+                    mapView.addOverlay(route.polyline)
+                    mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: true)
+                    self.directions = route.steps.map { $0.instructions }.filter{ !$0.isEmpty }
+                    for route in response!.routes {
+                        eta = Int(route.expectedTravelTime)
+                        print("eta is")
+                        print("\(eta/60) min")
+                    }
+                }
     }
     
     func getUserLocaation() -> [Double]{
